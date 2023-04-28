@@ -6,6 +6,10 @@ const txtColor = ref('text-primary')
 const bgColor = ref('text-bg-success')
 
 const count = ref(0)
+
+const increment = () => {
+  count.value++
+}
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const count = ref(0)
     <hr />
     <div class="row">
       <div class="offset-md-4 col-md-6">
-        <button class="btn btn-primary">+</button>
+        <button class="btn btn-primary" v-on:click="increment">+</button>
         <span class="h3">{{ count }}</span>
         <button class="btn btn-danger">-</button>
       </div>
@@ -24,7 +28,6 @@ const count = ref(0)
 </template>
 
 <style scoped>
-
 button {
   width: 100px;
 }

@@ -1,28 +1,10 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import TaskList from '@/components/TaskList.vue'
 
 const formTask = computed(() => {
   return ['border', 'border-info', 'border-2', 'p-4', 'rounded']
 })
-
-const task = ref({
-  title: '',
-  description: ''
-})
-
-const submitTask = () => {
-  tasks.value.push({
-    id: tasks.value.length + 1,
-    title: task.value.title,
-    description: task.value.description
-  })
-
-  task.value = {
-    title: '',
-    description: ''
-  }
-}
 </script>
 
 <template>

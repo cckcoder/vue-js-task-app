@@ -14,7 +14,7 @@ export const useTaskStore = defineStore('task', () => {
     description: ''
   })
 
-// Action
+  // Action
   const submitTask = () => {
     tasks.value.push({
       id: tasks.value.length + 1,
@@ -28,9 +28,15 @@ export const useTaskStore = defineStore('task', () => {
     }
   }
 
-  axios.get('http://localhost:8000/api/task/').then(response => {
+  const DeleteTask = (id) => {
+    return axios.delete(`http://localhost:8000/api/task/${id}`).then(() => {
+      tasks.value = tasks.value.filter((task) => task.id !== id)
+    })
+  }
+
+  axios.get('http://localhost:8000/api/task/').then((response) => {
     tasks.value = response.data
   })
 
-  return { tasks, task, submitTask, reverseTasks }
+  return { tasks, task, submitTask, reverseTasks, DeleteTask }
 })

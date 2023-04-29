@@ -17,7 +17,7 @@ const router = createRouter({
       component: TaskView
     },
     {
-      path: '/task/123',
+      path: '/task/:id',
       name: 'task-detail',
       component: TaskDetailView
     },

@@ -8,6 +8,7 @@ const placeHolder = ref('Input your favorit food here')
 
 const count = ref(0)
 const favoriteFood = ref('')
+const foodList = ref([])
 
 const increment = () => {
   count.value++
@@ -19,6 +20,10 @@ const decrement = () => {
 
 const helloMyName = () => {
   alert(`Hello ${myName.value}`)
+}
+
+const submitForm = () => {
+  foodList.value.push(favoriteFood.value)
 }
 </script>
 
@@ -39,13 +44,30 @@ const helloMyName = () => {
       <div class="alert alert-danger" role="alert">Your Count Addition more than limit!</div>
     </div>
     <hr />
-    <div class="row text-center">
-      <div class="offset-md-4 col-md-3">
-        <h3>V-model</h3>
-        <input type="text" class="form-control" :placeholder="placeHolder" v-model="favoriteFood" />
-        <span class="fav-food">
-          {{ favoriteFood }}
-        </span>
+    <div class="row">
+      <div class="offset-md-4 col-md-4">
+        <h3 class="text-center">Food List</h3>
+        <form @submit.prevent="submitForm">
+          <div class="row">
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                :placeholder="placeHolder"
+                v-model="favoriteFood"
+              />
+            </div>
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+        <hr />
+        <ul>
+          <li v-for="(food, index) in foodList" :key="index">
+            {{ food }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>

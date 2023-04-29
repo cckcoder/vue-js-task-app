@@ -34,6 +34,10 @@ const helloMyName = () => {
         <button class="btn btn-danger" @click="decrement">-</button>
       </div>
     </div>
+    <br />
+    <div class="row" v-if="count > 5">
+      <div class="alert alert-danger" role="alert">Your Count Addition more than limit!</div>
+    </div>
     <hr />
     <div class="row text-center">
       <div class="offset-md-4 col-md-3">

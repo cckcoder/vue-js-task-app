@@ -11,16 +11,21 @@ export const useTaskStore = defineStore('task', () => {
 
   const task = ref({
     title: '',
-    description: ''
+    description: '',
+    completed: false
   })
-
+  
+  const apiServier = 'http://157.245.152.237:8009/api/task/'
   // Action
   const submitTask = () => {
-    tasks.value.push({
-      id: tasks.value.length + 1,
-      title: task.value.title,
-      description: task.value.description
+    axios.post(apiServier, task.value)
+    .then((resp) => {
+      tasks.value.push(resp.data)
     })
+    .catch((err) => {
+      console.log(err)
+    })
+    
 
     task.value = {
       title: '',
@@ -29,12 +34,12 @@ export const useTaskStore = defineStore('task', () => {
   }
 
   const deleteTask = (id) => {
-    axios.delete(`http://localhost:8000/api/task/${id}`).then(() => {
+    axios.delete(apiServier + id).then(() => {
       tasks.value = tasks.value.filter((task) => task.id !== id)
     })
   }
 
-  axios.get('http://localhost:8000/api/task/').then((response) => {
+  axios.get(apiServier).then((response) => {
     tasks.value = response.data
   })
 

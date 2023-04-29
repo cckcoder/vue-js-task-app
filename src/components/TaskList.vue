@@ -9,7 +9,7 @@ const store = useTaskStore()
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <span>{{ task.title }}</span>
-          <button class="btn btn-danger btn-sm">&times;</button>
+          <button @click="store.deleteTask(task.id)" class="btn btn-danger btn-sm">&times;</button>
         </div>
       </div>
     </div>

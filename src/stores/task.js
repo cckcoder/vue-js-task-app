@@ -6,7 +6,7 @@ export const useTaskStore = defineStore('task', () => {
   const tasks = ref([])
 
   const reverseTasks = computed(() => {
-    return tasks.value.slice().reverse()
+    return tasks.value
   })
 
   const task = ref({
@@ -28,8 +28,8 @@ export const useTaskStore = defineStore('task', () => {
     }
   }
 
-  const DeleteTask = (id) => {
-    return axios.delete(`http://localhost:8000/api/task/${id}`).then(() => {
+  const deleteTask = (id) => {
+    axios.delete(`http://localhost:8000/api/task/${id}`).then(() => {
       tasks.value = tasks.value.filter((task) => task.id !== id)
     })
   }
@@ -38,5 +38,5 @@ export const useTaskStore = defineStore('task', () => {
     tasks.value = response.data
   })
 
-  return { tasks, task, submitTask, reverseTasks, DeleteTask }
+  return { tasks, task, submitTask, reverseTasks, deleteTask }
 })

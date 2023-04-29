@@ -4,8 +4,10 @@ import { ref } from 'vue'
 const myName = ref('Codewizz')
 const txtColor = ref('text-primary')
 const bgColor = ref('text-bg-success')
+const placeHolder = ref('Input your favorit food here')
 
 const count = ref(0)
+const favoriteFood = ref('')
 
 const increment = () => {
   count.value++
@@ -32,6 +34,16 @@ const helloMyName = () => {
         <button class="btn btn-danger" @click="decrement">-</button>
       </div>
     </div>
+    <hr />
+    <div class="row text-center">
+      <div class="offset-md-4 col-md-3">
+        <h3>V-model</h3>
+        <input type="text" class="form-control" :placeholder="placeHolder" v-model="favoriteFood" />
+        <span class="fav-food">
+          {{ favoriteFood }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,6 +58,6 @@ span {
 }
 
 h2 {
-  cursor: pointer; 
+  cursor: pointer;
 }
 </style>
